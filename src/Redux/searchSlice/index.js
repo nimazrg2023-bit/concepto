@@ -1,35 +1,31 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { companiesData } from '../data/companies';
+import { companiesData } from '../../core/constant';
 
 const initialState = {
   allCompanies: companiesData,
   filteredCompanies: companiesData,
-  searchQuery: '',
-  selectedIndustries: [], // فیلتر صنعت
-  maxEmployees: 5000, // اسلایدر تعداد کارمندان
-  onlyPrivate: false, // سوییچ شرکت‌های خصوصی
-  sortBy: 'popular', // محبوب‌ترین، جدیدترین، برترین
+  keyword: '',
+  companyType: '',
+  location: '',
+  industry: '',
+  similarSearch: '',
+  technology: '',
+  employeeRange: { min: 0, max: 5000 },
+  onlyPrivate: false,
+  sortBy: 'popular',
 };
 
 const searchSlice = createSlice({
   name: 'search',
   initialState,
   reducers: {
-    setSearchQuery: (state, action) => {
-      state.searchQuery = action.payload;
+    setFilter: (state, action) => {
+      const { name, value } = action.payload;
+      state[name] = value;
       applyFilters(state);
     },
-    toggleIndustry: (state, action) => {
-      const industry = action.payload;
-      if (state.selectedIndustries.includes(industry)) {
-        state.selectedIndustries = state.selectedIndustries.filter(i => i !== industry);
-      } else {
-        state.selectedIndustries.push(industry);
-      }
-      applyFilters(state);
-    },
-    setMaxEmployees: (state, action) => {
-      state.maxEmployees = action.payload;
+    setEmployeeRange: (state, action) => {
+      state.employeeRange = action.payload;
       applyFilters(state);
     },
     toggleOnlyPrivate: (state) => {
@@ -41,65 +37,56 @@ const searchSlice = createSlice({
       applyFilters(state);
     },
     clearFilters: (state) => {
-      state.searchQuery = '';
-      state.selectedIndustries = [];
-      state.maxEmployees = 5000;
+      state.keyword = '';
+      state.companyType = '';
+      state.location = '';
+      state.industry = '';
+      state.similarSearch = '';
+      state.technology = '';
+      state.employeeRange = { min: 0, max: 5000 };
       state.onlyPrivate = false;
       state.sortBy = 'popular';
-      applyFilters(state);
+      state.filteredCompanies = state.allCompanies;
     }
   },
 });
 
-// تابع کمکی برای اعمال همه فیلترها
 const applyFilters = (state) => {
   let result = state.allCompanies;
 
-  // ۱. فیلتر بر اساس سرچ (کلمات کلیدی)
-  if (state.searchQuery) {
-    result = result.filter(company => 
-      company.name.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-      company.industry.toLowerCase().includes(state.searchQuery.toLowerCase())
-    );
+  if (state.keyword) {
+    result = result.filter(c => c.name.toLowerCase().includes(state.keyword.toLowerCase()) || c.description.toLowerCase().includes(state.keyword.toLowerCase()));
+  }
+  if (state.companyType) {
+    result = result.filter(c => c.isPrivate.toString().includes(state.companyType.toLowerCase()));
+  }
+  if (state.location) {
+    result = result.filter(c => c.location.toLowerCase().includes(state.location.toLowerCase()));
+  }
+  if (state.industry) {
+    result = result.filter(c => c.industry.toLowerCase().includes(state.industry.toLowerCase()));
+  }
+  if (state.similarSearch) {
+    result = result.filter(c => c.name.toLowerCase().includes(state.similarSearch.toLowerCase()));
+  }
+  if (state.technology) {
+    result = result.filter(c => c.industry.toLowerCase().includes(state.technology.toLowerCase()));
   }
 
-  // ۲. فیلتر بر اساس صنعت
-  if (state.selectedIndustries.length > 0) {
-    result = result.filter(company => 
-      state.selectedIndustries.some(ind => company.industry.includes(ind))
-    );
-  }
+  result = result.filter(c => c.employees >= state.employeeRange.min && c.employees <= state.employeeRange.max);
 
-  // ۳. فیلتر بر اساس تعداد کارمندان
-  result = result.filter(company => company.employees <= state.maxEmployees);
-
-  // ۴. فیلتر شرکت‌های خصوصی
   if (state.onlyPrivate) {
-    result = result.filter(company => company.isPrivate === true);
+    result = result.filter(c => c.isPrivate === true);
   }
 
-  // ۵. مرتب‌سازی (الکی هندل شده)
   if (state.sortBy === 'newest') {
-    // فرض میکنیم آیدی بالاتر یعنی جدیدتر
     result = [...result].sort((a, b) => b.id - a.id);
   } else if (state.sortBy === 'top') {
-    // فرض میکنیم تعداد کارمندان بیشتر یعنی برتر
     result = [...result].sort((a, b) => b.employees - a.employees);
-  } else {
-    // محبوب‌ترین (پیش‌فرض)
-    result = [...result].sort((a, b) => a.id - b.id);
   }
 
   state.filteredCompanies = result;
 };
 
-export const { 
-  setSearchQuery, 
-  toggleIndustry, 
-  setMaxEmployees, 
-  toggleOnlyPrivate, 
-  setSortBy,
-  clearFilters
-} = searchSlice.actions;
-
+export const { setFilter, setEmployeeRange, toggleOnlyPrivate, setSortBy, clearFilters } = searchSlice.actions;
 export default searchSlice.reducer;
