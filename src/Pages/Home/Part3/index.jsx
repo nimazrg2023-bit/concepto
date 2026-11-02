@@ -1,12 +1,12 @@
 export default function Part3() {
     return (
-        <div className="w-full py-20 bg-white font-sans flex justify-center items-center" dir="rtl">
-            <div className="container mx-aut25/100 flex flex-wrap justify-center gap-12 lg:gap-8">
+        <div className="w-full  bg-white font-sans flex justify-center items-center" dir="rtl">
+            <div className="container max-sm:flex-col items-center max-sm:w-9/10 flex flex-wrap justify-center gap-12 lg:gap-8">
 
-                <div className="flex flex-col items-center group w-25/100">
+                <div className="flex flex-col items-center group w-full lg:w-25/100">
                     <div className="relative w-full h-[220px] flex justify-center items-end mb-6">
-                        <div className="absolute top- w-[390px] h-[130px] bg-[#dbeafe] rounded-[30px]"></div>
-                        <div className="relative z-10 w-[290px] h-[200px] bg-[#E9EAEE] rounded-t-[30px] p-4 flex flex-col gap-3 ">
+                        <div className="absolute top- w-full lg:h-[130px] h-[120px] max-sm:rounded-[25px] bg-[#dbeafe] rounded-[30px]"></div>
+                        <div className="relative z-10 lg:w-8/10 w-6/10 h-[175px] lg:h-[200px] bg-[#E9EAEE] rounded-t-[30px] p-4 flex flex-col gap-3 ">
                             <div className="w-full h-17 bg-white rounded-xl"></div>
                             <div className="flex mt-10 flex-row gap-2">
                                 <div className="flex-1 h-12 bg-white rounded-xl flex items-center justify-center text-gray-400">
@@ -28,10 +28,10 @@ export default function Part3() {
                     <h3 className="text-lg font-bold text-gray-800 text-center">شرکت‌های مورد علاقت رو پیدا کن</h3>
                 </div>
 
-                <div className="flex flex-col items-center group w-25/100">
+                <div className="flex flex-col items-center group w-full lg:w-25/100">
                     <div className="relative w-full h-[220px] flex justify-center items-end mb-6">
-                        <div className="absolute top- w-[390px] h-[130px] bg-[#60a5fa] rounded-[30px]"></div>
-                        <div className="relative z-10 w-[290px] h-[200px] bg-[#E9EAEE] rounded-t-[30px] p-4 flex flex-col gap-3 ">
+                        <div className="absolute top- w-full lg:h-[130px] h-[120px] max-sm:rounded-[25px] bg-[#60a5fa] rounded-[30px]"></div>
+                        <div className="relative z-10 lg:w-8/10 w-6/10 h-[175px] lg:h-[200px] bg-[#E9EAEE] rounded-t-[30px] p-4 flex flex-col gap-3 ">
                             <div className="flex flex-row-reverse gap-2">
                                 <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-gray-500">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,11 +46,11 @@ export default function Part3() {
                                 </div>
                             </div>
                             <div className="grid grid-cols-3 gap-2">
-                                <div className="h-18 bg-white rounded-xl"></div>
-                                <div className=" h-18 bg-[#2563eb] rounded-xl border-2 border-gray-300 flex items-end justify-center shadow-md">
-                                    <img className="h-15" src="/building.png" alt="" />
+                                <div className="lg:h-18 h-15 bg-white rounded-xl"></div>
+                                <div className=" lg:h-18 h-15 bg-[#2563eb] rounded-xl border-2 border-gray-300 flex items-end justify-center shadow-md">
+                                    <img className="lg:h-15 h-12" src="/building.png" alt="" />
                                 </div>
-                                <div className="h-18 bg-white rounded-xl"></div>
+                                <div className="lg:h-18 h-15 bg-white rounded-xl"></div>
                             </div>
                             <div className="grid grid-cols-3 gap-2 ">
                                 <div className="h-14 bg-white rounded-xl"></div>
@@ -64,10 +64,10 @@ export default function Part3() {
                     <h3 className="text-lg font-bold text-gray-800 text-center">کسب و کارهای مناسب رو پیدا کن</h3>
                 </div>
 
-                <div className="flex flex-col items-center group w-25/100">
+                <div className="flex flex-col items-center group w-full lg:w-25/100">
                     <div className="relative w-full h-[220px] flex justify-center items-end mb-6">
-                        <div className="absolute top- w-[390px] h-[130px] bg-[#3b82f6] rounded-[30px]"></div>
-                        <div className="relative z-10 w-[290px] h-[200px] bg-[#f1f5f9] rounded-t-[30px] p-4 flex flex-col gap-3 ">
+                        <div className="absolute top- w-full lg:h-[130px] h-[120px] max-sm:rounded-[25px] bg-[#3b82f6] rounded-[30px]"></div>
+                        <div className="relative z-10 lg:w-8/10 w-6/10 h-[175px] lg:h-[200px] bg-[#f1f5f9] rounded-t-[30px] p-4 flex flex-col gap-3 ">
                             <div className="w-full h-15 bg-white rounded-xl"></div>
                             <div className="flex flex-row-reverse mt-10 gap-2">
                                 <div className="flex-1 h-12 bg-white rounded-xl flex items-center justify-center text-gray-400">

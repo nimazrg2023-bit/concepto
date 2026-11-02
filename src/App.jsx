@@ -8,14 +8,12 @@ import Home from "./Pages/Home/inedex";
 export default function App() {
   return (
     <Layout>
-      
-        <Routes>
-          <Route path="/" element={<Navigate to="/search" replace />} />
-          <Route path="search1" element={<HomePage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/Home" element={<Home />} />
-        </Routes>
-      
+      <Routes>
+        <Route path="/" element={<Navigate to="/search" replace />} />
+        <Route path="/search1" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/Home" element={<Home />} />
+      </Routes>
     </Layout>
   )
 }

@@ -1,13 +1,13 @@
 export const companiesData = [
-  { id: 1, name: "بلوبانک", logo: "/logo1.jpg", color: "bg-blue-500", industry: "هوش مصنوعی", location: "تهران، ایران", employees: 500, description: "لورم ایپسوم متن ساختگی...", isPrivate: true },
-  { id: 2, name: "اسنپ", logo: "/logo2.png", color: "bg-green-500", industry: "حمل و نقل", location: "شیراز، ایران", employees: 1200, description: "لورم ایپسوم متن ساختگی...", isPrivate: true },
-  { id: 3, name: "علی‌بابا", logo: "/logo3.png", color: "bg-yellow-500", industry: "برنامه نویسی", location: "اصفهان، ایران", employees: 300, description: "لورم ایپسوم متن ساختگی...", isPrivate: false },
-  { id: 4, name: "اسنپ فود", logo: "/logo4.png", color: "bg-pink-500", industry: "حمل و نقل", location: "مشهد، ایران", employees: 800, description: "لورم ایپسوم متن ساختگی...", isPrivate: true },
-  { id: 5, name: "تپسی", logo: "/logo5.jpg", color: "bg-orange-500", industry: "حمل و نقل", location: "کرج، ایران", employees: 600, description: "لورم ایپسوم متن ساختگی...", isPrivate: false },
-  { id: 6, name: "ایرانسل", logo: "/logo6.png", color: "bg-yellow-400", industry: "تجارت الکترونیک", location: "تهران، ایران", employees: 2500, description: "لورم ایپسوم متن ساختگی...", isPrivate: false },
-  { id: 7, name: "دیجی‌کالا", logo: "/logo7.jpg", color: "bg-red-500", industry: "تجارت الکترونیک", location: "تهران، ایران", employees: 3000, description: "لورم ایپسوم متن ساختگی...", isPrivate: true },
-  { id: 8, name: "جابینجا", logo: "/logo8.png", color: "bg-cyan-500", industry: "برنامه نویسی", location: "تهران، ایران", employees: 150, description: "لورم ایپسوم متن ساختگی...", isPrivate: true },
-  { id: 9, name: "دیوار", logo: "/logo9.png", color: "bg-red-700", industry: "تجارت الکترونیک", location: "تهران، ایران", employees: 400, description: "لورم ایپسوم متن ساختگی...", isPrivate: true },
+  { id: 1, name: "بلوبانک", logo: "/logo1.jpg", color: "bg-blue-500", industry: "هوش مصنوعی", location: "تهران، ایران", employees: 500, description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است", isPrivate: true },
+  { id: 2, name: "اسنپ", logo: "/logo2.png", color: "bg-green-500", industry: "حمل و نقل", location: "شیراز، ایران", employees: 1200, description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است", isPrivate: true },
+  { id: 3, name: "علی‌بابا", logo: "/logo3.png", color: "bg-yellow-500", industry: "برنامه نویسی", location: "اصفهان، ایران", employees: 300, description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است", isPrivate: false },
+  { id: 4, name: "اسنپ فود", logo: "/logo4.png", color: "bg-pink-500", industry: "حمل و نقل", location: "مشهد، ایران", employees: 800, description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است", isPrivate: true },
+  { id: 5, name: "تپسی", logo: "/logo5.jpg", color: "bg-orange-500", industry: "حمل و نقل", location: "کرج، ایران", employees: 600, description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است", isPrivate: false },
+  { id: 6, name: "ایرانسل", logo: "/logo6.png", color: "bg-yellow-400", industry: "تجارت الکترونیک", location: "تهران، ایران", employees: 2500, description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است", isPrivate: false },
+  { id: 7, name: "دیجی‌کالا", logo: "/logo7.jpg", color: "bg-red-500", industry: "تجارت الکترونیک", location: "تهران، ایران", employees: 3000, description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است", isPrivate: true },
+  { id: 8, name: "جابینجا", logo: "/logo8.png", color: "bg-cyan-500", industry: "برنامه نویسی", location: "تهران، ایران", employees: 150, description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است", isPrivate: true },
+  { id: 9, name: "دیوار", logo: "/logo9.png", color: "bg-red-700", industry: "تجارت الکترونیک", location: "تهران، ایران", employees: 400, description: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است", isPrivate: true },
 ];
 
 export const industriesList = [

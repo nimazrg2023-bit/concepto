@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Filter, ChevronDown, ChevronUp } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setFilter, setEmployeeRange, toggleOnlyPrivate, clearFilters } from '../../../Redux/searchSlice';
 
@@ -36,7 +35,10 @@ export default function FilterSidebar({ onClose }) {
   return (
     <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 w-full lg:w-160/100 flex-shrink-0 h-fit">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="font-bold text-lg flex items-center gap-2 text-gray-800"><Filter size={20} /> همه فیلترها</h2>
+        <h2 className="font-bold text-lg flex items-center gap-2 text-gray-800"><svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 4V0H0V18H20V4H10ZM4 16H2V14H4V16ZM4 12H2V10H4V12ZM4 8H2V6H4V8ZM4 4H2V2H4V4ZM8 16H6V14H8V16ZM8 12H6V10H8V12ZM8 8H6V6H8V8ZM8 4H6V2H8V4ZM18 16H10V14H12V12H10V10H12V8H10V6H18V16ZM16 8H14V10H16V8ZM16 12H14V14H16V12Z" fill="#444859" />
+        </svg>
+          همه فیلترها</h2>
         <button onClick={() => dispatch(clearFilters())} className="text-blue-500 text-sm">حذف همه</button>
       </div>
       <div className="divide-y divide-gray-100">
@@ -44,7 +46,13 @@ export default function FilterSidebar({ onClose }) {
           <div key={filter.name} className="py-3">
             <button onClick={() => toggleSection(filter.name)} className="w-full flex justify-between items-center text-sm font-medium text-gray-700 hover:text-blue-500">
               {filter.label}
-              {openSections[filter.name] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              {openSections[filter.name] ? <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1.0575 5.5575L4.5 2.1225L7.9425 5.5575L9 4.5L4.5 0L0 4.5L1.0575 5.5575Z" fill="#444859" />
+              </svg>
+                : <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.0575 0L4.5 3.435L7.9425 0L9 1.0575L4.5 5.5575L0 1.0575L1.0575 0Z" fill="#444859" />
+                </svg>
+              }
             </button>
             {openSections[filter.name] && (
               <div className="mt-3">

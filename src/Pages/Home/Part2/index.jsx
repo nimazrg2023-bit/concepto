@@ -6,12 +6,12 @@ export default function Part2() {
     ]
     return (
         <div className="w-full flex items-center justify-center">
-            <div className="flex flex-row-reverse items-center mt-40 justify-between w-8/10">
+            <div className="flex max-sm:w-65/100 max-sm:flex-col max-sm:gap-2   flex-row-reverse items-center mt-10 lg:mt-40 justify-between w-8/10">
                 {n.map((item, index) => (
-                    <div key={index} className="flex flex-row-reverse items-center gap-2">
-                        <p className="text-[20px] relative left-10">{item.title}</p>
-                        <p className="text-[44px] relative left-10">{item.number}</p>
-                        <span className="size-18 rounded-full bg-[#FFECB3]"></span>
+                    <div key={index} className="flex w-full justify-end flex-row-reverse items-center gap-2">
+                        <p className="text-[20px] max-sm:text-[14px]  relative left-8 lg:left-10">{item.title}</p>
+                        <p className="text-[44px] max-sm:text-[22px]  relative left-8 lg:left-10">{item.number}</p>
+                        <span className="size-18 max-sm:size-14 rounded-full bg-[#FFECB3]"></span>
                     </div>
                 ))}
             </div>
