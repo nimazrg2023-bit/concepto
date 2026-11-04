@@ -1,0 +1,79 @@
+import { useState, useEffect } from 'react';
+import { Search, Briefcase } from 'lucide-react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFilter } from '../../../../Redux/searchSlice';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+export default function Header() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { keyword } = useSelector(state => state.search);
+  const [localQuery, setLocalQuery] = useState(keyword || '');
+
+  useEffect(() => {
+    setLocalQuery(keyword || '');
+  }, [keyword]);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setLocalQuery(value);
+    if (location.pathname === '/search1' || location.pathname === '/search') {
+      dispatch(setFilter({ name: 'keyword', value }));
+    }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (location.pathname !== '/search1' && location.pathname !== '/search') {
+      navigate('/search1');
+    }
+  };
+  const mobilehandler = () => {
+
+  }
+  return (
+    <header className="bg-white max-sm:border-b max-sm:border-gray-300 w-10/10 border-gray-200 sticky top-0 z-50">
+      {/* <div>
+        <p>تماس با ما</p>
+        <p>درباره ما</p>
+        <p>اخبار و رویدادها</p>
+        <p>فرصت های شغلی </p>
+        <p>شرکت‌ها</p>
+      </div> */}
+      <div className="container w-full lg:w-9/10 mx-auto px-4 py-4 flex lg:flex-wrap lg:justify-between max-sm:flex-col items-center max-sm:justify-between gap-4">
+        <div className="flex w-full max-sm:flex-col justify-between items-center gap-4">
+          <div className='flex max-sm:w-full justify-between'>
+            <div className='flex gap-2'>
+              <button onClick={() => mobilehandler} className='flex lg:hidden'><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#E9EAEE" /><path d="M8.5 21H23.5V19.3333H8.5V21ZM8.5 16.8333H23.5V15.1667H8.5V16.8333ZM8.5 11V12.6667H23.5V11H8.5Z" fill="#2E303B" /></svg></button>
+              <button onClick={() => { navigate("/Home") }}><svg width="199" height="24" viewBox="0 0 199 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.4996 0.0375977C10.0923 0.0375977 7.93796 0.552694 6.03778 1.56892C4.13776 2.58515 2.65809 4.00475 1.59604 5.825C0.533825 7.64525 0 9.71189 0 12.0347C0 14.3575 0.533825 16.4248 1.59604 18.234C2.65809 20.043 4.13776 21.4527 6.03778 22.4689C7.93796 23.4851 10.0923 24.0002 12.4996 24.0002C15.4502 24.0002 17.9769 23.2665 20.0776 21.8035C21.4007 20.882 22.4095 19.7119 23.1802 18.3606L18.5264 15.7839H17.6335C17.1378 16.7666 16.4328 17.5195 15.5241 18.0334C14.6154 18.547 13.5893 18.8041 12.4328 18.8041C10.5681 18.8041 9.047 18.1846 7.89047 16.9561C6.73394 15.7277 6.16059 14.0896 6.16059 12.0347C6.16059 9.97995 6.73394 8.34189 7.89047 7.11346C9.047 5.88503 10.5681 5.26528 12.4328 5.26528C13.5893 5.26528 14.6154 5.52259 15.5241 6.03624C15.9896 6.29932 16.3947 6.63223 16.7519 7.01843L22.0866 4.13525C21.4996 3.44246 20.8556 2.80136 20.0776 2.25545C17.9769 0.781428 15.4502 0.0375977 12.4996 0.0375977Z" fill="#0D6EFD" /><path d="M39.9376 0C37.7337 0 35.7112 0.512548 33.8747 1.53605C32.0383 2.5597 30.5757 3.98332 29.496 5.80787C28.4164 7.63257 27.875 9.6922 27.875 11.9842C27.875 14.2762 28.4164 16.3352 29.496 18.1709C30.5757 20.0068 32.0383 21.4402 33.8747 22.4639C35.7112 23.4873 37.7338 23.9999 39.9376 23.9999C42.1414 23.9999 44.154 23.4873 45.9794 22.4639C47.8048 21.4402 49.2475 20.0067 50.3161 18.1709C51.3844 16.3352 51.9159 14.2762 51.9159 11.9842C51.9159 9.6922 51.3945 7.63257 50.337 5.80787C49.2797 3.98332 47.8264 2.5597 45.9899 1.53605C44.1533 0.512548 42.1414 0 39.9376 0ZM39.9376 5.17666C41.8075 5.17666 43.2974 5.79348 44.4216 7.02839C45.5457 8.26346 46.1056 9.91465 46.1056 11.9842C46.1056 14.0314 45.5457 15.6728 44.4216 16.9189C43.2974 18.165 41.8075 18.7917 39.9376 18.7917C38.0453 18.7917 36.5357 18.1749 35.4115 16.9398C34.2873 15.7049 33.7168 14.0536 33.7168 11.9842C33.7168 9.89242 34.2873 8.23132 35.4115 7.00744C36.5357 5.78356 38.0455 5.17666 39.9376 5.17666Z" fill="#0D6EFD" /><path d="M56.6118 12.2305V23.9989H62.3167L62.3619 20.188L56.6118 12.2305Z" fill="#0D6EFD" /><path d="M56.6123 0.567383V2.3665L70.859 23.9992H77.5796V23.9781L62.1066 0.567383H56.6123Z" fill="#0D6EFD" /><path d="M56.611 0.567192C56.611 0.566623 56.6115 0.566162 56.6121 0.566162H62.108L62.1073 0.566624L77.5806 23.9779H77.5804V23.9991C77.5804 23.9996 77.5799 24.0001 77.5794 24.0001H70.8572L70.8579 23.9996L56.6108 2.36631H56.611V0.567192ZM56.6131 0.568221V2.366L70.8593 23.998H77.5783V23.9782L62.1058 0.568221H56.6131Z" fill-rule="evenodd" clip-rule="evenodd" fill="#0D6EFD" /><path d="M71.874 0.567139V5.42811L77.579 14.056V0.567139H71.874Z" fill="#0D6EFD" /><path d="M94.0638 0.126465C91.7931 0.126465 89.7613 0.639654 87.9694 1.65212C86.1774 2.66458 84.7818 4.07893 83.78 5.89244C82.7784 7.70595 82.2749 9.76494 82.2749 12.0792C82.2749 14.3934 82.7784 16.453 83.78 18.2555C84.7818 20.0578 86.1774 21.4622 87.9694 22.4747C89.7613 23.4872 91.7931 24.0003 94.0638 24.0003C96.8464 24.0003 99.2295 23.2693 101.211 21.8118C101.944 21.2721 102.562 20.6266 103.116 19.939L98.1267 17.0139C97.7789 17.4233 97.3764 17.7807 96.9163 18.0556C96.0592 18.5673 95.0914 18.8235 94.0006 18.8235C92.242 18.8235 90.8179 18.2062 89.7271 16.9824C88.6363 15.7585 88.085 14.1265 88.085 12.0792C88.085 10.032 88.6363 8.40001 89.7271 7.17613C90.8179 5.95225 92.242 5.33479 94.0006 5.33479C95.0914 5.33479 96.0592 5.59115 96.9163 6.10289C97.5052 6.45456 97.9744 6.96151 98.3793 7.53387L103.463 4.64041C102.84 3.76884 102.098 2.99354 101.211 2.3361C99.2295 0.867541 96.8464 0.126465 94.0638 0.126465Z" fill="#0D6EFD" /><path d="M108.158 9.59717V14.4124H124.663V9.59717H108.158Z" fill="#0D6EFD" /><path d="M108.158 0.0632324V4.87847H124.663V0.0632324H108.158Z" fill="#0D6EFD" /><path d="M108.158 19.1848V24.0002H124.663V19.1848H108.158Z" fill="#0D6EFD" /><path d="M129.358 0.568359V5.17682H135.063V5.16642H138.168C139.259 5.16642 140.076 5.42262 140.61 5.93437C141.144 6.44627 141.41 7.17791 141.41 8.11249C141.41 9.04708 141.144 9.76816 140.61 10.2799C140.076 10.7917 139.259 11.048 138.168 11.048H137.505H129.358V24.0002H135.063V15.5829H138.61C140.524 15.5829 142.119 15.2415 143.41 14.5517C144.701 13.8618 145.66 12.9503 146.283 11.8267C146.907 10.7029 147.22 9.46975 147.22 8.11249C147.22 6.64378 146.897 5.33322 146.252 4.19842C145.606 3.06346 144.638 2.18165 143.347 1.53637C142.055 0.891082 140.48 0.568359 138.61 0.568359H129.358Z" fill="#0D6EFD" /><path d="M151.915 0.568359V5.13476H158.125V24.0002H163.83V5.13476H170.04V0.568359H151.915Z" fill="#0D6EFD" /><path d="M186.786 0.000244141C184.582 0.000244141 182.571 0.512792 180.734 1.53629C178.898 2.55995 177.435 3.98357 176.355 5.80811C175.276 7.63282 174.735 9.69244 174.735 11.9844C174.735 14.2764 175.276 16.3354 176.355 18.1712C177.435 20.0071 178.898 21.4404 180.734 22.4641C182.571 23.4876 184.582 24.0001 186.786 24.0001C188.989 24.0001 191.013 23.4876 192.839 22.4641C194.664 21.4404 196.107 20.0069 197.176 18.1712C198.244 16.3354 198.776 14.2764 198.776 11.9844C198.776 9.69244 198.254 7.63282 197.197 5.80811C196.139 3.98357 194.686 2.55995 192.85 1.53629C191.013 0.512792 188.989 0.000244141 186.786 0.000244141ZM186.786 5.1769C188.657 5.1769 190.157 5.79372 191.28 7.02863C192.405 8.26371 192.965 9.9149 192.965 11.9844C192.965 14.0316 192.405 15.673 191.28 16.9191C190.157 18.1652 188.657 18.792 186.786 18.792C184.894 18.792 183.395 18.1752 182.27 16.9401C181.147 15.7052 180.576 14.0538 180.576 11.9844C180.576 9.89267 181.147 8.23156 182.27 7.00768C183.395 5.7838 184.894 5.1769 186.786 5.1769Z" fill="#0D6EFD" /></svg></button>
+            </div>
+            <div className='flex lg:hidden w-4/10 items-center gap-2 flex-row-reverse'>
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="31" height="31" rx="7.5" stroke="#AEB2C0" /><path d="M15.1665 11.8333L13.9998 13L16.1665 15.1667H7.6665V16.8333H16.1665L13.9998 19L15.1665 20.1667L19.3332 16L15.1665 11.8333ZM22.6665 21.8333H15.9998V23.5H22.6665C23.5832 23.5 24.3332 22.75 24.3332 21.8333V10.1667C24.3332 9.25 23.5832 8.5 22.6665 8.5H15.9998V10.1667H22.6665V21.8333Z" fill="#2E303B" /></svg>
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="8" fill="#0D6EFD" /><path d="M15.1627 23.5H14.3294L15.1627 17.6667H12.2461C11.5127 17.6667 11.9711 17.0417 11.9877 17.0167C13.0627 15.1167 14.6794 12.2833 16.8377 8.5H17.6711L16.8377 14.3333H19.7627C20.0961 14.3333 20.2794 14.4917 20.0961 14.8833C16.8044 20.625 15.1627 23.5 15.1627 23.5Z" fill="white" /></svg>
+            </div>
+          </div>
+          <div className='flex w-75/100 max-sm:w-full justify-between'>
+            <div className="flex-1 max-w-xl order-3 md:order-2 w-full">
+              <form onSubmit={handleSearch} className="relative lg:left-25">
+                <Search className="absolute right-3 top-2.5 text-gray-500" size={20} />
+                <input type="text" placeholder="جستجو کسب و کار..." value={localQuery} onChange={handleChange} onClick={() => { if (location.pathname !== '/search1' && location.pathname !== '/search') { navigate("/search1"); } }} className="w-full bg-gray-100 rounded-xl py-2 pr-10 pl-4 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              </form>
+            </div>
+            <div className="lg:flex hidden items-center gap-2 order-2 md:flex-row-reverse">
+              <button className="hidden md:flex gap-2 border rounded-lg p-2 flex-row-reverse text-[#2E303B] hover:text-blue-500 text-[18px]">ورود / ثبت نام<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 7L9.6 8.4L12.2 11H2V13H12.2L9.6 15.6L11 17L16 12L11 7ZM20 19H12V21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3H12V5H20V19Z" fill="#0F0F0F" /></svg></button>
+              <button className="bg-blue-500 text-white hidden px-4 py-2 rounded-lg text-[18px] lg:flex items-center gap-2 hover:bg-blue-600 transition"><svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.99802 18H2.99802L3.99802 11H0.498018C-0.381982 11 0.168018 10.25 0.188018 10.22C1.47802 7.94 3.41802 4.54 6.00802 0H7.00802L6.00802 7H9.51802C9.91802 7 10.138 7.19 9.91802 7.66C5.96802 14.55 3.99802 18 3.99802 18Z" fill="white" /></svg>رایگان شروع کن!</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex items-center gap-6 mr-23 w-full text-sm text-gray-600">
+        <span className="hidden md:block">شرکت‌ها</span>
+        <span className="hidden md:block">فرصت‌های شغلی</span>
+        <span className="hidden md:block">اخبار و رویدادها</span>
+        <span className="hidden md:block">درباره ما</span>
+        <span className="hidden md:block">تماس با ما</span>
+      </div>
+    </header>
+  );
+}

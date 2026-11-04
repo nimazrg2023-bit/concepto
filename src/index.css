@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    direction: rtl;
+    font-family: 'Vazirmatn', sans-serif;
+  }
+}
+
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  cursor: pointer;
+  pointer-events: all;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input[type=range]::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #3b82f6;
+  cursor: pointer;
+  pointer-events: all;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
